@@ -1,0 +1,17 @@
+1 如果发送消息到一个不存在的exchange会怎么样
+    都收不到消息
+2 default exchange 默认名字为"" 怎么绑定的
+   默认交换机（default exchange）实际上是一个由消息代理预先声明好的没有名字（名字为空字符串）的直连交换机（direct exchange）。
+   它有一个特殊的属性使得它对于简单应用特别有用处：那就是每个新建队列（queue）都会自动绑定到默认交换机上，绑定的路由键（routing key）名称与队列名称相同。
+   作者：薛晨
+   链接：https://www.jianshu.com/p/3578f7dd722c
+   来源：简书
+   简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+   如果不指定exchangeName 默认发到该队列，此时如果指定了routerKey，且队列名和routerKey相同，则消息会最终到该queue
+
+ 3 消费者如何等待接收消息
+    见MsgReceiver
+
+ 4 消费确认 ack
+ 4 如何控制消费速度

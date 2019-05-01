@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-boot-stop-demo
+
+  #消息队列配置
+  rabbitmq:
+    addresses: localhost
+    username: test
+    password: test
+    port: 5172
+    virtual-host: stop_host
+    publisher-confirms: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 2
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true

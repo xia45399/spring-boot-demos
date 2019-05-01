@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.ssm.dao.MovieMapper">
+
+    <insert id="insert" parameterType="com.summer.ssm.pojo.Movie" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO movie (name,add_time) VALUES (#{name},#{addTime})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM movie WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.summer.ssm.pojo.Movie">
+        UPDATE movie SET name=#{name} WHERE id=#{id}
+    </update>
+
+    <select id="list" resultType="com.summer.ssm.pojo.Movie">
+        SELECT * FROM movie
+    </select>
+</mapper>
