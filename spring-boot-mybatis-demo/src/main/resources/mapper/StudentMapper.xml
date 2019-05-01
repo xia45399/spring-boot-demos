@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.springboot.mybatis.demo.dao.StudenMapper">
+
+    <select id="qryAll" resultType="com.summer.springboot.mybatis.demo.pojo.Student">
+        SELECT * FROM student
+    </select>
+</mapper>
