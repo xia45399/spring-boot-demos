@@ -4,7 +4,26 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: test
     password: test
-
+  #消息队列配置
+  rabbitmq:
+    addresses: localhost
+    username: test
+    password: test
+    port: 5172
+    virtual-host: test_vhost
+    publisher-confirms: true
+    #    template:
+    #      exchange: test.direct
+    listener:
+      #direct:
+      #  acknowledge-mode: manual
+      #  prefetch: 3
+      #  consumers-per-queue:
+      simple:
+        #消费者手动回复ack消息
+        acknowledge-mode: manual
+        #最多同时接收消息数量
+        prefetch: 2
 mybatis:
   type-aliases-package: com.summer.springboot.web.demo.pojo
   mapper-locations: classpath:/mapper/*.xml
