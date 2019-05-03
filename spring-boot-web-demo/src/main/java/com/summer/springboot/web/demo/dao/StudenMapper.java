@@ -9,4 +9,6 @@ import java.util.List;
 public interface StudenMapper {
 
     List<Student> qryAll();
+
+    Student getStudentById(Long id);
 }

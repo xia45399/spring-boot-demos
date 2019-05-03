@@ -1,5 +1,6 @@
 package com.summer.springboot.web.demo.controller;
 
+import com.summer.springboot.web.demo.pojo.Student;
 import com.summer.springboot.web.demo.service.StudentService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,5 +16,10 @@ public class StudentController {
     @RequestMapping("/qryAll")
     public Object qryAll() {
         return studentService.qryAll();
+    }
+
+    @RequestMapping("/getStudentById")
+    public Student getStudentById(long id) {
+        return studentService.getStudentById(id);
     }
 }

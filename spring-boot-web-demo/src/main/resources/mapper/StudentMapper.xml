@@ -6,4 +6,8 @@
     <select id="qryAll" resultType="com.summer.springboot.web.demo.pojo.Student">
         SELECT * FROM student
     </select>
+
+    <select id="getStudentById" resultType="com.summer.springboot.web.demo.pojo.Student" parameterType="long">
+        SELECT * FROM student where id=#{id}
+    </select>
 </mapper>
