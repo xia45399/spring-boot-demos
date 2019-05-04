@@ -1,12 +1,13 @@
+serviceHost: localhost
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/demo
+    url: jdbc:mysql://${serviceHost}:3306/demo
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: test
     password: test
   #消息队列配置
   rabbitmq:
-    addresses: localhost
+    addresses: ${serviceHost}
     username: test
     password: test
     port: 5172
@@ -24,6 +25,8 @@ spring:
         acknowledge-mode: manual
         #最多同时接收消息数量
         prefetch: 2
+  redis:
+    host: ${serviceHost}
 mybatis:
   type-aliases-package: com.summer.springboot.web.demo.pojo
   mapper-locations: classpath:/mapper/*.xml
