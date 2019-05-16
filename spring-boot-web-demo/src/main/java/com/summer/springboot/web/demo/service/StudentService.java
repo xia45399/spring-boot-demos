@@ -21,4 +21,8 @@ public class StudentService {
     public Student getStudentById(Long id) {
         return studenMapper.getStudentById(id);
     }
+
+    public int insertStudent(Student student) {
+        return studenMapper.insertStudent(student);
+    }
 }

@@ -10,4 +10,8 @@
     <select id="getStudentById" resultType="com.summer.springboot.web.demo.pojo.Student" parameterType="long">
         SELECT * FROM student where id=#{id}
     </select>
+
+    <insert id="insertStudent" parameterType="com.summer.springboot.web.demo.pojo.Student">
+        insert into student (name,age,sex) values (#{name},#{age},#{sex});
+    </insert>
 </mapper>
