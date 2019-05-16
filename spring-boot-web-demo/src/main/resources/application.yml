@@ -1,4 +1,4 @@
-serviceHost: localhost
+serviceHost: pi.xummer.cc
 spring:
   datasource:
     url: jdbc:mysql://${serviceHost}:3306/demo
