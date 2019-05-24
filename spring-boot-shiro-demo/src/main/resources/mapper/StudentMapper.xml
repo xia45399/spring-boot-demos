@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.springboot.shiro.demo.dao.StudenMapper">
+
+    <select id="qryAll" resultType="com.summer.springboot.shiro.demo.pojo.Student">
+        SELECT * FROM student
+    </select>
+
+    <select id="getStudentById" resultType="com.summer.springboot.shiro.demo.pojo.Student" parameterType="long">
+        SELECT * FROM student where id=#{id}
+    </select>
+
+    <insert id="insertStudent" parameterType="com.summer.springboot.shiro.demo.pojo.Student">
+        insert into student (name,age,sex) values (#{name},#{age},#{sex});
+    </insert>
+</mapper>
