@@ -25,8 +25,7 @@ public class UserShiroRealm extends AuthorizingRealm {
         log.info("==========user is {}", obj);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 字符串形式的权限，shiro还支持role形式的
-        info.addStringPermission("authc:test");
-        info.addStringPermission("123456111");
+        info.addStringPermission("student:getStudentById");
         // TODO 用户授权信息
         return info;
     }
