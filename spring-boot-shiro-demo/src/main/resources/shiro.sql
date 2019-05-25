@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 24/05/2019 22:08:13
+ Date: 25/05/2019 11:01:17
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,14 @@ CREATE TABLE `permission`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of permission
+-- ----------------------------
+INSERT INTO `permission` VALUES (1, 'student:getStudentById');
+INSERT INTO `permission` VALUES (2, 'student:qryAll');
+INSERT INTO `permission` VALUES (3, 'student:addStudent');
 
 -- ----------------------------
 -- Table structure for role
@@ -35,7 +42,14 @@ CREATE TABLE `role`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, 'admin');
+INSERT INTO `role` VALUES (2, 'studentManager');
+INSERT INTO `role` VALUES (3, 'studentReadOnly');
 
 -- ----------------------------
 -- Table structure for role_permission
@@ -45,6 +59,17 @@ CREATE TABLE `role_permission`  (
   `rid` bigint(20) NULL DEFAULT NULL,
   `pid` bigint(20) NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of role_permission
+-- ----------------------------
+INSERT INTO `role_permission` VALUES (2, 1);
+INSERT INTO `role_permission` VALUES (2, 2);
+INSERT INTO `role_permission` VALUES (2, 3);
+INSERT INTO `role_permission` VALUES (3, 1);
+INSERT INTO `role_permission` VALUES (1, 1);
+INSERT INTO `role_permission` VALUES (1, 2);
+INSERT INTO `role_permission` VALUES (1, 3);
 
 -- ----------------------------
 -- Table structure for student
@@ -74,12 +99,14 @@ CREATE TABLE `user`  (
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', 'admin');
+INSERT INTO `user` VALUES (2, 'studentM', '123456');
+INSERT INTO `user` VALUES (3, 'studentV', '123456');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -90,5 +117,12 @@ CREATE TABLE `user_role`  (
   `rid` bigint(20) NOT NULL,
   PRIMARY KEY (`uid`, `rid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
+INSERT INTO `user_role` VALUES (1, 1);
+INSERT INTO `user_role` VALUES (2, 2);
+INSERT INTO `user_role` VALUES (3, 3);
 
 SET FOREIGN_KEY_CHECKS = 1;

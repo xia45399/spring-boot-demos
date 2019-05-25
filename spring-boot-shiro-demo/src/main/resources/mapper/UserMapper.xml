@@ -7,4 +7,14 @@
         SELECT * FROM user WHERE username=#{username}
     </select>
 
+    <select id="listUserPermissions" resultType="String">
+        SELECT p.name
+            FROM user u
+            LEFT JOIN user_role ru ON u.id = ru.uid
+            LEFT JOIN role r ON r.id = ru.rid
+            LEFT JOIN role_permission rp ON r.id = rp.rid
+            LEFT JOIN permission p ON p.id = rp.pid
+        WHERE u.username = #{username}
+    </select>
+
 </mapper>
