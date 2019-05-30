@@ -5,5 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ProductMapper {
-    int create(Product product);
+    int insert(Product product);
+
+    int insertProductDetail(Long id, long time);
 }

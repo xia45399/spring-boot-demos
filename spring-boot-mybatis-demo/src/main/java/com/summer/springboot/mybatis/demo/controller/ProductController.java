@@ -16,6 +16,7 @@ public class ProductController {
 
     @RequestMapping("/create")
     public Object create(@RequestBody Product product) {
-        return productService.create(product);
+        int a= productService.create(product);
+        return a;
     }
 }
