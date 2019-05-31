@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.springboot.mybatis.demo.dao.ProductMapper">
+
+    <insert id="insert" parameterType="com.summer.springboot.mybatis.demo.pojo.Product">
+        INSERT INTO product (product_name,price) VALUES (#{productName},#{price});
+    </insert>
+
+    <insert id="insertProductDetail">
+        INSERT INTO product_detail (product_id,add_time) VALUES (#{id},#{time});
+    </insert>
+</mapper>
