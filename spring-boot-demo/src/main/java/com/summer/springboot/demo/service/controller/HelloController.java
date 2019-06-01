@@ -11,8 +11,9 @@ import javax.annotation.Resource;
 public class HelloController {
     @Resource
     private HelloService helloService;
+
     @RequestMapping("hello")
-    public String hello(){
-       return helloService.sayHello();
+    public String hello() {
+        return helloService.sayHello();
     }
 }
