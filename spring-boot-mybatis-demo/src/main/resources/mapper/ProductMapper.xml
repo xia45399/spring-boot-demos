@@ -10,4 +10,14 @@
     <insert id="insertProductDetail">
         INSERT INTO product_detail (product_id,add_time) VALUES (#{id},#{time});
     </insert>
+
+    <select id="list" resultType="com.summer.springboot.mybatis.demo.pojo.Product">
+        SELECT * FROM product
+        <where>
+            <if test="productName!=null">
+                AND product_name = #{productName}
+            </if>
+        </where>
+    </select>
+
 </mapper>

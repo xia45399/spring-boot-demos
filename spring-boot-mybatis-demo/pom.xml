@@ -16,6 +16,7 @@
     <properties>
         <mybatis.version>2.0.0</mybatis.version>
         <fastjson.version>1.2.56</fastjson.version>
+        <pagehelper.version>1.2.12</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -32,6 +33,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+
 
         <!--工具类-->
         <dependency>
