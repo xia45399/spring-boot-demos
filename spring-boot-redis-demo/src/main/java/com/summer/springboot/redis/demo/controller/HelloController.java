@@ -1,5 +1,6 @@
 package com.summer.springboot.redis.demo.controller;
 
+import com.summer.springboot.redis.demo.config.RedisUtils;
 import com.summer.springboot.redis.demo.service.HelloService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,20 @@ import java.util.Date;
 @RequestMapping
 public class HelloController {
     @Resource
+    private RedisUtils redisUtils;
+    @Resource
     private HelloService helloService;
+
+    @RequestMapping("setKey")
+    public void setKey(){
+        redisUtils.set("a","a",100);
+    }
+
+    @RequestMapping("getKey")
+    public void getKey(){
+        System.out.println( redisUtils.get("a"));
+        System.out.println(redisUtils.getExpire("a"));
+    }
 
     @RequestMapping("hello")
     public String hello() {
