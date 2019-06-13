@@ -1,6 +1,9 @@
 package com.summer.springboot.redis.demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -15,24 +18,29 @@ public class RedisUtils {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    // =============================common============================
+    @Autowired(required = false)
+    public void setRedisTemplate(RedisTemplate redisTemplate) {
+        RedisSerializer stringSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        redisTemplate.setHashValueSerializer(stringSerializer);
+        this.redisTemplate = redisTemplate;
+    }
+
+//=============================common============================
+
     /**
      * 指定缓存失效时间
      *
      * @param key  键
      * @param time 时间(秒)
-     * @return
      */
-    public boolean expire(String key, long time) {
-        try {
-            if (time > 0) {
-                redisTemplate.expire(key, time, TimeUnit.SECONDS);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public Boolean expire(String key, long time) {
+        if (time < 0) {
             return false;
         }
+        return redisTemplate.expire(key, time, TimeUnit.SECONDS);
     }
 
     /**
@@ -41,7 +49,7 @@ public class RedisUtils {
      * @param key 不能为null
      * @return 时间(秒) 返回0代表为永久有效
      */
-    public long getExpire(String key) {
+    public Long getExpire(String key) {
         return redisTemplate.getExpire(key, TimeUnit.SECONDS);
     }
 
@@ -76,7 +84,8 @@ public class RedisUtils {
         }
     }
 
-    // ============================String=============================
+// ============================String=============================
+
     /**
      * 普通缓存获取
      *
