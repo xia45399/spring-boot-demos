@@ -103,7 +103,6 @@ public class RedisUtils {
      * @param value 值
      * @return true成功 false失败
      */
-
     public boolean set(String key, Object value) {
         try {
             redisTemplate.opsForValue().set(key, value);
@@ -122,7 +121,6 @@ public class RedisUtils {
      * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
      * @return true成功 false 失败
      */
-
     public boolean set(String key, Object value, long time) {
         try {
             if (time > 0) {

@@ -12,10 +12,6 @@ public class RedisController {
     @Resource
     private RedisUtils redisUtils;
 
-    @RequestMapping("string")
-    public void string() {
-
-    }
 
     @RequestMapping("common")
     public void common() {
@@ -30,5 +26,23 @@ public class RedisController {
         System.out.println("before delete hasKey " + redisUtils.hasKey("willDetele"));
         redisUtils.del("willDetele");
         System.out.println("after delete hasKey" + redisUtils.hasKey("willDetele"));
+    }
+
+    @RequestMapping("string")
+    public void string() {
+        System.out.println(redisUtils.get("stringKey"));
+        System.out.println(redisUtils.set("stringKey", "fsd发多少更多官方第三个是翻"));
+        System.out.println(redisUtils.get("stringKey"));
+        System.out.println(redisUtils.set("stringKey", "fsd发多少更多官方第三个是翻", 100));
+        System.out.println("stringKey 过期时间 " + redisUtils.getExpire("stringKey"));
+        System.out.println("stringKey 设置过期时间 " + redisUtils.expire("stringKey", 200));
+
+        System.out.println("\n自增测试");
+        System.out.println(redisUtils.set("stringIntKey", "3"));
+        System.out.println(redisUtils.get("stringIntKey"));
+        System.out.println(redisUtils.incr("stringIntKey", 4));
+        System.out.println(redisUtils.get("stringIntKey"));
+        System.out.println(redisUtils.decr("stringIntKey", 5));
+        System.out.println(redisUtils.get("stringIntKey"));
     }
 }
