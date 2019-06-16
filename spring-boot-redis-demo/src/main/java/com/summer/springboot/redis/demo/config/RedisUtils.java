@@ -140,7 +140,7 @@ public class RedisUtils {
      *
      * @param key   键
      * @param delta 要增加几(大于0)
-     * @return
+     * @return 递增后的值
      */
     public long incr(String key, long delta) {
         if (delta < 0) {
@@ -154,7 +154,7 @@ public class RedisUtils {
      *
      * @param key   键
      * @param delta 要减少几(小于0)
-     * @return
+     * @return 递减后的值
      */
     public long decr(String key, long delta) {
         if (delta < 0) {
@@ -162,7 +162,9 @@ public class RedisUtils {
         }
         return redisTemplate.opsForValue().increment(key, -delta);
     }
-    // ================================Map=================================
+
+
+// ================================Map=================================
 
     /**
      * HashGet
@@ -171,7 +173,7 @@ public class RedisUtils {
      * @param item 项 不能为null
      * @return 值
      */
-    public Object hget(String key, String item) {
+    public Object hGet(String key, String item) {
         return redisTemplate.opsForHash().get(key, item);
     }
 
@@ -181,8 +183,7 @@ public class RedisUtils {
      * @param key 键
      * @return 对应的多个键值
      */
-
-    public Map<Object, Object> hmget(String key) {
+    public Map<Object, Object> hGetAll(String key) {
         return redisTemplate.opsForHash().entries(key);
     }
 
@@ -316,7 +317,9 @@ public class RedisUtils {
     public double hdecr(String key, String item, double by) {
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
-    // ============================set=============================
+
+
+// ============================set=============================
 
     /**
      * 根据key获取Set中的所有值

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("redis")
@@ -44,5 +45,12 @@ public class RedisController {
         System.out.println(redisUtils.get("stringIntKey"));
         System.out.println(redisUtils.decr("stringIntKey", 5));
         System.out.println(redisUtils.get("stringIntKey"));
+    }
+
+    @RequestMapping("hash")
+    public void hash() {
+        System.out.println(redisUtils.hGet("hashKey", "name"));
+        Map<Object, Object> map = redisUtils.hGetAll("hashKey");
+        System.out.printf("");
     }
 }
