@@ -167,7 +167,7 @@ public class RedisUtils {
 // ================================Map=================================
 
     /**
-     * HashGet
+     * 获取存储在哈希表中指定字段的值。
      *
      * @param key  键 不能为null
      * @param item 项 不能为null
@@ -178,7 +178,7 @@ public class RedisUtils {
     }
 
     /**
-     * 获取hashKey对应的所有键值
+     * 获取在哈希表中指定 key 的所有字段和值
      *
      * @param key 键
      * @return 对应的多个键值
@@ -188,14 +188,14 @@ public class RedisUtils {
     }
 
     /**
-     * HashSet
+     * 同时将多个 field-value (域-值)对设置到哈希表 key 中
+     * 已有key就添加到后面，没有就新建key
      *
      * @param key 键
      * @param map 对应多个键值
      * @return true 成功 false 失败
      */
-
-    public boolean hmset(String key, Map<String, Object> map) {
+    public boolean hmSet(String key, Map<String, Object> map) {
         try {
             redisTemplate.opsForHash().putAll(key, map);
             return true;
@@ -235,8 +235,7 @@ public class RedisUtils {
      * @param value 值
      * @return true 成功 false失败
      */
-
-    public boolean hset(String key, String item, Object value) {
+    public boolean hSet(String key, String item, Object value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
