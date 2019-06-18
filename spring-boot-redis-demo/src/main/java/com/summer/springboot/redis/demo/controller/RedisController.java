@@ -14,7 +14,6 @@ public class RedisController {
     @Resource
     private RedisUtils redisUtils;
 
-
     @RequestMapping("common")
     public void common() {
         redisUtils.set("aaa", "aaa");
