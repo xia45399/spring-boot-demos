@@ -20,5 +20,6 @@
         <module>spring-boot-jsp-demo</module>
         <module>spring-boot-shiro-demo</module>
         <module>spring-boot-redis-demo</module>
+        <module>spring-boot-rabbitmq-demo</module>
     </modules>
 </project>

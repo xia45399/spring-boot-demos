@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-boot-rabbitmq-demo
+
+  #消息队列配置
+  rabbitmq:
+    addresses: localhost
+    username: test
+    password: test
+    port: 5172
+    virtual-host: test
+    publisher-confirms: true
+    template:
+      exchange: test.direct
+    listener:
+#      direct:
+#        acknowledge-mode: manual
+#        prefetch: 3
+#        consumers-per-queue:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 20
