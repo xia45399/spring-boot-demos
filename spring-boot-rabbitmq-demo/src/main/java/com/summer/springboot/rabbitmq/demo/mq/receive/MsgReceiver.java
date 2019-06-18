@@ -1,7 +1,7 @@
-package com.summer.rabbitmq.demo.mq.receive;
+package com.summer.springboot.rabbitmq.demo.mq.receive;
 
 import com.rabbitmq.client.Channel;
-import com.summer.rabbitmq.demo.mq.msg.MqMsg;
+import com.summer.springboot.rabbitmq.demo.mq.msg.MqMsg;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

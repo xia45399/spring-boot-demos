@@ -1,6 +1,6 @@
-package com.summer.rabbitmq.demo.mq.util;
+package com.summer.springboot.rabbitmq.demo.mq.util;
 
-import com.summer.rabbitmq.demo.mq.msg.MqMsg;
+import com.summer.springboot.rabbitmq.demo.mq.msg.MqMsg;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;

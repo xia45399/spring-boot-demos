@@ -1,7 +1,7 @@
-package com.summer.rabbitmq.demo.controller;
+package com.summer.springboot.rabbitmq.demo.controller;
 
-import com.summer.rabbitmq.demo.mq.msg.MqMsg;
-import com.summer.rabbitmq.demo.mq.util.MqUtils;
+import com.summer.springboot.rabbitmq.demo.mq.msg.MqMsg;
+import com.summer.springboot.rabbitmq.demo.mq.util.MqUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

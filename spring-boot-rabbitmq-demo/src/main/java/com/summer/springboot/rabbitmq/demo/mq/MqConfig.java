@@ -1,4 +1,4 @@
-package com.summer.rabbitmq.demo.mq;
+package com.summer.springboot.rabbitmq.demo.mq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

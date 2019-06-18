@@ -1,4 +1,4 @@
-package com.summer.rabbitmq.demo.mq.msg;
+package com.summer.springboot.rabbitmq.demo.mq.msg;
 
 import lombok.Data;
 
