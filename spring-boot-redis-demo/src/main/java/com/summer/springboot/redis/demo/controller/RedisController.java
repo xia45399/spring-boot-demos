@@ -1,6 +1,6 @@
 package com.summer.springboot.redis.demo.controller;
 
-import com.summer.springboot.redis.demo.config.RedisUtils;
+import com.summer.springboot.redis.demo.utils.RedisUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

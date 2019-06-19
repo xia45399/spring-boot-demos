@@ -1,4 +1,4 @@
-package com.summer.springboot.redis.demo.config;
+package com.summer.springboot.redis.demo.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
