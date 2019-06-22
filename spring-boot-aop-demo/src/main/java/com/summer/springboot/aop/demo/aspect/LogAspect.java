@@ -83,12 +83,28 @@ public class LogAspect {
         systemLog.setStartTime(new Timestamp(startTime.get()));
         systemLog.setSpendTime((endTime - startTime.get()));
 
-        Object o = getParameter(method, joinPoint);
-        String param = o == null ? "" : o.toString();
+        String param;
+//        Object o = getParameter(method, joinPoint);
+//        param = o == null ? "" : o.toString();
+        param = getParam(method, joinPoint.getArgs());
+
         systemLog.setParam(param);
         systemLog.setResult(result.toString());
         systemLogMapper.insert(systemLog);
         return result;
+    }
+
+    private String getParam(Method method, Object[] args) {
+        Parameter[] params = method.getParameters();
+        int len = params.length;
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            Parameter p = params[i];
+            String key = p.getName();
+            Object v = args[i];
+            s.append(key).append(":").append(v).append(" ");
+        }
+        return s.toString();
     }
 
     private Object getParameter(Method method, ProceedingJoinPoint joinPoint) {

@@ -1,6 +1,9 @@
 package com.summer.springboot.aop.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.summer.springboot.aop.demo.pojo.Demo;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +24,12 @@ public class ParamController {
         demo.setLon(1L);
         demo.setStr("after");
         return demo;
+    }
+
+    @PostMapping("json")
+    public JSONObject json(@RequestBody JSONObject jsonObject) {
+        JSONObject result = new JSONObject();
+        result.put("aaa", "方法返回参数");
+        return jsonObject;
     }
 }
