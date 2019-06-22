@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @RequestMapping("/hello")
-    public Long hello() {
+    public Long hello(String a) {
         System.out.println("333");
         return System.currentTimeMillis();
     }

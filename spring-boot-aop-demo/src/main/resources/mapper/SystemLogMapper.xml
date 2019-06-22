@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.springboot.aop.demo.dao.SystemLogMapper">
+
+    <insert id="insert">
+        INSERT INTO system_log (url,uri,ip,method,start_time,spend_time,param,result)
+        VALUES (#{url},#{uri},#{ip},#{method},#{startTime},#{spendTime},#{param},#{result});
+    </insert>
+
+</mapper>

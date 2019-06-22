@@ -1,5 +1,7 @@
 package com.summer.springboot.aop.demo.aspect;
 
+import com.summer.springboot.aop.demo.dao.SystemLogMapper;
+import com.summer.springboot.aop.demo.pojo.SystemLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -7,16 +9,29 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Aspect
 @Component
 @Order(1)
 public class LogAspect {
+
+    @Resource
+    private SystemLogMapper systemLogMapper;
 
     private ThreadLocal<Long> startTime = new ThreadLocal<>();
 
@@ -61,15 +76,48 @@ public class LogAspect {
 
         long endTime = System.currentTimeMillis();
 
-        systemLog.setIp(request.getRemoteUser());
-        systemLog.setMethod(request.getMethod());
-        systemLog.setResult(result.toString());
-        systemLog.setSpendTime((endTime - startTime.get()));
-        systemLog.setStartTime(startTime.get());
-        systemLog.setUri(request.getRequestURI());
         systemLog.setUrl(request.getRequestURL().toString());
+        systemLog.setUri(request.getRequestURI());
+        systemLog.setIp(request.getRemoteAddr());
+        systemLog.setMethod(request.getMethod());
+        systemLog.setStartTime(new Timestamp(startTime.get()));
+        systemLog.setSpendTime((endTime - startTime.get()));
 
+        Object o = getParameter(method, joinPoint);
+        String param = o == null ? "" : o.toString();
+        systemLog.setParam(param);
+        systemLog.setResult(result.toString());
+        systemLogMapper.insert(systemLog);
         return result;
+    }
+
+    private Object getParameter(Method method, ProceedingJoinPoint joinPoint) {
+        Object[] args = joinPoint.getArgs();
+        List<Object> argList = new ArrayList<>();
+        Parameter[] parameters = method.getParameters();
+        for (int i = 0; i < parameters.length; i++) {
+            RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
+            if (requestBody != null) {
+                argList.add(args[i]);
+            }
+            RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
+            if (requestParam != null) {
+                Map<String, Object> map = new HashMap<>();
+                String key = parameters[i].getName();
+                if (!StringUtils.isEmpty(requestParam.value())) {
+                    key = requestParam.value();
+                }
+                map.put(key, args[i]);
+                argList.add(map);
+            }
+        }
+        if (argList.size() == 0) {
+            return null;
+        } else if (argList.size() == 1) {
+            return argList.get(0);
+        } else {
+            return argList;
+        }
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")

@@ -1,6 +1,8 @@
-package com.summer.springboot.aop.demo.aspect;
+package com.summer.springboot.aop.demo.pojo;
 
 import lombok.Data;
+
+import java.sql.Timestamp;
 
 @Data
 public class SystemLog {
@@ -31,7 +33,7 @@ public class SystemLog {
     /**
      * 操作时间
      */
-    private Long startTime;
+    private Timestamp startTime;
 
     /**
      * 消耗时间
