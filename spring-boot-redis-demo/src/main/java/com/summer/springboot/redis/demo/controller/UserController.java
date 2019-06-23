@@ -1,6 +1,5 @@
 package com.summer.springboot.redis.demo.controller;
 
-import com.summer.springboot.redis.demo.pojo.User;
 import com.summer.springboot.redis.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +14,10 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("getUser")
-    public User getUser(Long id) {
-        return userService.getUser(id);
+    public Long getUser() {
+        userService.getUser(1L);
+        userService.getUser2(2L);
+        return System.currentTimeMillis();
     }
 
 }
