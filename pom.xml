@@ -22,5 +22,6 @@
         <module>spring-boot-redis-demo</module>
         <module>spring-boot-rabbitmq-demo</module>
         <module>spring-boot-aop-demo</module>
+        <module>spring-boot-stop-demo</module>
     </modules>
 </project>
