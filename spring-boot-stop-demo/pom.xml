@@ -9,7 +9,7 @@
         <version>2.1.3.RELEASE</version>
     </parent>
     <groupId>com.summer</groupId>
-    <artifactId>spring-boot-stop</artifactId>
+    <artifactId>spring-boot-stop-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
