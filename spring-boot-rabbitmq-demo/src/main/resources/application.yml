@@ -9,7 +9,7 @@ spring:
     addresses: localhost
     username: test
     password: test
-    port: 5172
+    port: 5672
     virtual-host: test
     publisher-confirms: true
     template:
